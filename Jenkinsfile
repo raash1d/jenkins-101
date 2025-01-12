@@ -13,7 +13,8 @@ pipeline {
                 echo "Building.."
                 sh '''
                 cd myapp
-                python3 --version
+                python3 -m venv docker-agent
+                source docker-agent/bin/activate
                 pip install -r requirements.txt
                 '''
             }
@@ -23,6 +24,7 @@ pipeline {
                 echo "Testing.."
                 sh '''
                 cd myapp
+                source docker-agent/bin/activate
                 python3 hello.py
                 python3 hello.py --name=Brad
                 '''
